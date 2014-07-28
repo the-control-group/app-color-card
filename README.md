@@ -1,6 +1,15 @@
-App Color Card Web Element
-================
+# &lt;app-color-card&gt;
 
-See the [demo page](http://demo page) for more information.
+> A web component to show a simple color card of data.
 
-## Getting Started
+## How-to
+```html
+<app-color-card view_more></app-color-card>
+```
+![Example](screenshot.png)
+
+
+## License
+Licensed under the MIT license.
+
+Copyright (c) 2014 [TheControlGroup](http://www.thecontrolgroup.com).
