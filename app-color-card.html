@@ -1,81 +1,95 @@
 <link rel="import" href="../polymer/polymer.html">
-<!-- 
-Name: App Color Card
-Author: TheControlGroup
-Date: 06-28-14
+<!--
+Element for creating a colorful stat card
+
+##### Example
+
+    <app-color-card title="Revenue" icon="fa-usd" ></app-color-card>
 
 @element app-color-card
+@blurb Element for creating a colorful stat card
+@status alpha
+@homepage http://the-control-group.github.io/app-color-card
 -->
-<style> @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');   </style>
-
-<polymer-element name="app-color-card" attributes="color, icon, card_title, description, view_more, view_more_link">
+<polymer-element name="app-color-card">
   <template>
     <link href="app-color-card.css" rel="stylesheet">
     <style> @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');   </style>
-    
-    <div id="card" data-color="{{color}}"><i class="fa {{icon}}"></i>
-      <h4>{{card_title}}</h4>
+
+    <div id="card"><i id="icon" class="fa {{icon}}"></i>
+      <h4>{{title}}</h4>
       <div style="clear:both"></div>
       <p>{{description}}</p>
-      <a id="view_more" class="{{ {hidden: view_more == false} | tokenList }}" href="{{view_more_link}}"><span>View More</span><i class="fa fa-arrow-circle-o-right"></i></a>
+      <a id="view_more" class="{{ {hidden: !href} | tokenList }}" href="{{href}}"><span>View More</span><i class="fa fa-arrow-circle-o-right"></i></a>
     </div>
 
   </template>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script>
     Polymer('app-color-card', {
-      /**
-       * The Color Card Attributes
-       *
-       * @attribute color
-       * @type Hex Color String including '#'
-       * @default "#44B6AE"
-       *
-       * @attribute title
-       * @type string
-       * @default 99,999
-       *
-       * @attribute description
-       * @type string
-       * @default 'orders'
-       *
-       * @attribute card_title
-       * @type icon string
-       * @default 'fa-shopping-cart'
-       *  Find Info about Font Awesome Fonts Here: http://fortawesome.github.io/Font-Awesome/
-       *
-       * @attribute view_more
-       * @default false
-       *  If this is not set, view_more button will be hidden
-       *
-       * @attribute view_more_link
-       * @type url string
-       * @default 'http://www.thecontrolgroup.com'
-       *  The URL to navigate to when the user clicks on the view_more button
-       */
-      
-      color: '#44B6AE',
-      card_title: '99,999',
-      description: 'orders',
-      icon: 'fa-shopping-cart', 
-      view_more: false,
-      view_more_link: 'http://www.thecontrolgroup.com',
+      publish: {
+        /**
+         * color of the card
+         * can be any css color style
+         *
+         * @attribute color
+         * @type String
+         * @default "#44B6AE"
+         */
+        color: { value: '#44B6AE', reflect: true },
+
+        /**
+         * title of the card
+         *
+         * @attribute title
+         * @type String
+         * @default 0
+         */
+        title: { value: 0, reflect: true },
+
+        /**
+         * description of the card
+         *
+         * @attribute description
+         * @type String
+         */
+        description: { value: '', reflect: true },
+
+        /**
+         * The font awesome icon
+         * for the card
+         *
+         * __see:__ [fontawesome](http://fontawesome.io/icons/)
+         *
+         * @attribute icon
+         * @type String
+         */
+        icon: { value: 'fa-info', reflect: true },
+
+        /**
+         * link for the view_more link
+         *
+         * @attribute href
+         * @type String
+         */
+        href: { value: '', reflect: true }
+      },
+
       ready: function() {
-        this.$.card.style.width = this.width;
-        this.$.card.style.background = this.color;
+        this.style.width = this.width;
+        this.style.background = this.color;
       },
       domReady: function(){
-        var shadowRoot = this.shadowRoot || this;
-        var cardElement = $(shadowRoot.querySelector('#card'));
-        var cardElementIcon = $(shadowRoot.querySelector('#card i'));
-        var lighter_color = ColorLuminance(cardElement.data('color'), 0.2);
-        cardElementIcon.css('color', lighter_color);   
+        var cardElement = this.$.card;
+        var cardElementIcon = this.$.icon;
+        var lighter_color = ColorLuminance(this.color, 0.2);
+        cardElementIcon.style.color = lighter_color;
       },
       colorChanged: function(){
-        this.$.card.style.background = this.color;
+        this.style.background = this.color;
       },
     });
-    
+
     //**************************************************
     //
     // ColorLuminance
@@ -83,9 +97,9 @@ Date: 06-28-14
     // Pass the Hex Color '#0099cb', and a value 1.0 to -1.0 to lighten or darken
     //
     //**************************************************
-    
-    function ColorLuminance(hex, lum) {
 
+    function ColorLuminance(hex, lum) {
+      console.log(arguments)
       // validate hex string
       hex = String(hex).replace(/[^0-9a-f]/gi, '');
       if (hex.length < 6) {
@@ -103,6 +117,6 @@ Date: 06-28-14
 
       return rgb;
     }
-    
+
   </script>
 </polymer-element>
