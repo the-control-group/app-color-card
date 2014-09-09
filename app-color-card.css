@@ -5,7 +5,7 @@
 #card{
   padding:10px 0px;
   position:relative;
-  overflow:hidden;
+  /*overflow:hidden;*/
   height:110px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
@@ -16,7 +16,6 @@
   font-size:110px;
   position:absolute;
   left:-20px;
-  z-index:1;
   -webkit-transition: left 0.5s ease; /* For Safari 3.1 to 6.0 */
   transition: left 0.5s ease;
 }
@@ -31,11 +30,9 @@
   float:right;
   text-align:right;
   color:#fff;
-  position:relative;
   margin-top:0px;
   margin-bottom:0px;
   margin-right:15px;
-  z-index:2;
 }
 
 #card p{
@@ -60,7 +57,6 @@ a#view_more{
   padding-top:5px;
   padding-bottom:5px;
   text-transform:uppercase;
-  z-index:3;
   text-decoration:none;
   -webkit-transition: background 0.5s ease; /* For Safari 3.1 to 6.0 */
   transition: background 0.5s ease;
@@ -72,7 +68,7 @@ a#view_more span{
 }
 
 a#view_more:hover{
-  background:rgba(0, 0, 0, 0.34); 
+  background:rgba(0, 0, 0, 0.34);
 }
 
 a#view_more.hidden{
