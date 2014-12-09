@@ -5,7 +5,7 @@
     "Tony Lea <tony@devdojo.com>"
   ],
   "description": "An element for creating simple color cards of metric or display data",
-  "keywords": "polymer, web-components, color card, color-card, app color card, app-color-card, card",
+  "keywords": ["polymer", "web-components", "color card", "color-card", "app color card", "app-color-card", "card"],
   "main": "app-color-card.html",
   "license": "MIT",
   "homepage": "https://github.com/the-control-group/app-color-card",
